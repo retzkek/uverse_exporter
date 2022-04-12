@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import argparse
 import logging
 import time
 
@@ -47,8 +48,15 @@ class StatsCollector(object):
 
 
 if __name__=="__main__":
-    logging.basicConfig(level=logging.INFO)
-    REGISTRY.register(StatsCollector("http://192.168.86.1"))
-    start_http_server(8080)
+    parser = argparse.ArgumentParser(description="AT&T/Uverse metrics exporter")
+    parser.add_argument("-u","--url",default="http://192.168.1.1")
+    parser.add_argument("-p","--port",type=int,default=8080)
+    parser.add_argument("-v","--verbose",dest="log_level",action="store_const",
+                        const=logging.DEBUG,default=logging.INFO)
+    args = parser.parse_args()
+    logging.basicConfig(level=args.log_level)
+    REGISTRY.register(StatsCollector(args.url))
+    logger.info(f"starting server on port {args.port}")
+    start_http_server(args.port)
     while True:
         time.sleep(1)
