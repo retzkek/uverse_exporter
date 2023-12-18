@@ -1,4 +1,4 @@
-{ nixpkgs ? import <nixpkgs> {}, pythonPkgs ? nixpkgs.pkgs.python38Packages }:
+{ nixpkgs ? import <nixpkgs> {}, pythonPkgs ? nixpkgs.pkgs.python311Packages }:
 
 let
   # This takes all Nix packages into this scope

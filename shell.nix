@@ -1,11 +1,11 @@
 { pkgs ? import <nixpkgs> {  } }:
 
 let
-  customPython = pkgs.python38.buildEnv.override {
+  customPython = pkgs.python311.buildEnv.override {
     extraLibs = [ 
-      pkgs.python38Packages.beautifulsoup4
-      pkgs.python38Packages.requests
-      pkgs.python38Packages.prometheus-client
+      pkgs.python311Packages.beautifulsoup4
+      pkgs.python311Packages.requests
+      pkgs.python311Packages.prometheus-client
     ];
   };
 in
